@@ -21,3 +21,4 @@ Route.get("/", () => {
 });
 
 Route.get("/files", "FileController.index");
+Route.post("/files", "FileController.store");

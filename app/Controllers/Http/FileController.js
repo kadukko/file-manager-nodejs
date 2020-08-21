@@ -42,6 +42,15 @@ class FileController {
 
     return dir;
   }
+
+  async store({ request, response }) {
+    const caminho = request.body.path;
+    const arquivo = request.file("file", {
+      size: "200mb",
+    });
+
+    await arquivo.move(Helpers.publicPath(caminho), { overwrite: true });
+  }
 }
 
 module.exports = FileController;
