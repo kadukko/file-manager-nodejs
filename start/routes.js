@@ -22,3 +22,4 @@ Route.get("/", () => {
 
 Route.get("/files", "FileController.index");
 Route.post("/files", "FileController.store");
+Route.post("/files/delete", "FileController.destroy");

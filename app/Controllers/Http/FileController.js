@@ -4,6 +4,7 @@ const path = require("path");
 const fs = require("fs");
 
 const Helpers = use("Helpers");
+const Drive = use("Drive");
 
 class FileController {
   async index({ request, response }) {
@@ -50,6 +51,12 @@ class FileController {
     });
 
     await arquivo.move(Helpers.publicPath(caminho), { overwrite: true });
+  }
+
+  async destroy({ request, response }) {
+    const { file } = request.all();
+
+    await Drive.delete(Helpers.publicPath(file));
   }
 }
 
