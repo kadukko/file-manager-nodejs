@@ -26,3 +26,4 @@ Route.post("/files/delete", "FileController.destroy");
 Route.post("/files/move", "FileController.move");
 Route.post("/files/copy", "FileController.copy");
 Route.post("/files/newfolder", "FileController.newfolder");
+Route.post("/files/rename", "FileController.rename");

@@ -65,7 +65,7 @@ class FileController {
 
     const filename = file.split("/").reverse()[0];
 
-    const f = await Drive.move(
+    await Drive.move(
       Helpers.publicPath(file),
       Helpers.publicPath(Path.join(path, filename)),
       { overwrite: true }
@@ -77,7 +77,7 @@ class FileController {
 
     const filename = file.split("/").reverse()[0];
 
-    const f = await Drive.copy(
+    await Drive.copy(
       Helpers.publicPath(file),
       Helpers.publicPath(Path.join(path, filename)),
       { overwrite: true }
@@ -90,6 +90,20 @@ class FileController {
     if (!Fs.existsSync(Helpers.publicPath(path))) {
       Fs.mkdirSync(Helpers.publicPath(path));
     }
+  }
+
+  async rename({ request }) {
+    const { file, filename } = request.all();
+
+    let path = file.split("/");
+    path.pop();
+    path = path.join("/");
+
+    await Drive.move(
+      Helpers.publicPath(file),
+      Helpers.publicPath(Path.join(path, filename)),
+      { overwrite: true }
+    );
   }
 }
 
