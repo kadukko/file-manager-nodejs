@@ -83,6 +83,14 @@ class FileController {
       { overwrite: true }
     );
   }
+
+  async newfolder({ request, response }) {
+    const { path } = request.all();
+
+    if (!Fs.existsSync(Helpers.publicPath(path))) {
+      Fs.mkdirSync(Helpers.publicPath(path));
+    }
+  }
 }
 
 module.exports = FileController;
